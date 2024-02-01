@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+        <form action="/buy" method="post">
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="symbol" placeholder="Enter Symbol" type="text" value = {{ symbol }}>
+            </div>
+
+            <div class="mb-3">
+                <input autocomplete="off" class="form-control mx-auto w-auto" name="shares" placeholder="Shares" min = 0 type="number" value = {{ shares }}>
+            </div>
+
+            {% if symbol %}
+                <div style="padding-bottom: 10px;"> {{ shares }} shares of {{ symbol }} will cost {{ price | usd}}</div>
+            {% endif %}
+            <button class="btn btn-primary" type="submit" name = "action" value = "check">Check Price</button>
+
+            <button class="btn btn-primary" type="submit">Buy</button>
+        </form>
+{% endblock %}

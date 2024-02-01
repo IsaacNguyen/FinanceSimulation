@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+        <form action="/quote" method="post">
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="symbol" placeholder="Enter Symbol" type="text">
+            </div>
+
+            <button class="btn btn-primary" type="submit">Lookup</button>
+        </form>
+    {% if quote %}
+        <div style="padding-top: 10px;"> The cost for a share of {{ symbol }} is {{ quote['price']|usd }}</div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+        <form action="/sell" method="post">
+            <div class="mb-3">
+                <select class = "form-select mx-auto w-auto" name = "symbol"  id="transactionSelect">
+                    <option disabled="" selected="">Symbol</option>
+                    {% for transaction in transactions %}
+                        {% if transaction['total_shares'] > 0 %}
+                            <option value = {{transaction['symbol']}}>{{transaction['symbol']}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <input autocomplete="off" class="form-control mx-auto w-auto" name="shares" placeholder="Shares" min = 0 max = "" type="number">
+            </div>
+
+            <button class="btn btn-primary mb-3" type="submit" name = "action" value = "sell">Sell</button>
+
+        </form>
+
+        <div id="selectedTransaction"></div>
+
+        <script>
+            function getSharesOnHover() {
+                var transactions = {{ transactions | tojson | safe }};
+                var selectedOption = document.getElementById('transactionSelect').options[document.getElementById('transactionSelect').selectedIndex];
+                var targetSymbol = selectedOption.text;
+                var foundTransaction = null;
+
+                for (var i = 0; i < transactions.length; i++) {
+                    if (transactions[i]['symbol'] === targetSymbol) {
+                        return [transactions[i]['total_shares'], transactions[i]['symbol']];
+                    }
+                }
+
+                return null;
+            }
+
+        document.getElementById('transactionSelect').addEventListener('change', function () {
+            var shares = getSharesOnHover()[0];
+            var symbol = getSharesOnHover()[1];
+            document.getElementById('selectedTransaction').innerText = "You have " + shares + " shares of " + symbol;
+
+            document.querySelector("input[name='shares']").setAttribute("max", shares);
+        });
+        </script>
+{% endblock %}
