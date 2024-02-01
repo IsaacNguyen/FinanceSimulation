@@ -49,5 +49,5 @@ This project is a full-stack website that simulates stock trading using the Yaho
      pip install -r requirements.txt
 
 4. Run the application by inputting
-  ```bash
-    flask run
+    ```bash
+      flask run
