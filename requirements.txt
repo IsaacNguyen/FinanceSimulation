@@ -1,0 +1,6 @@
+pytz
+requests
+flask
+cs50
+Werkzeug
+flask_session
