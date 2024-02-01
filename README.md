@@ -12,11 +12,14 @@ This project is a full-stack website that simulates stock trading using the Yaho
 - **Stock Trading Simulation:**
   - Enabled users to quote stock prices and execute buy/sell transactions in a simulated trading environment.
 
-- **Real-time Transaction Tracking:**
-  - Implemented a dedicated history tab that displays real-time updates of user transactions.
-
 - **Database Integration:**
   - Utilized a database to store transaction data for historical tracking and analysis.
+ 
+- **Registration and Login:**
+  - Users can easily register for an account and securely log in, ensuring a seamless onboarding experience.
+
+- **Personalized Account Storage:**
+  - Each user account has a dedicated space in the database, allowing for secure storage of information, personalizing their stock trading simulation experience.
 
 ## Technologies Used
 
